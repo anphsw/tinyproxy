@@ -1544,15 +1544,8 @@ void handle_connection (int fd)
         char peer_ipaddr[IP_LENGTH];
         char peer_string[HOSTNAME_LENGTH];
 
-        getpeer_information (fd, peer_ipaddr, peer_string);
-
         if (config.bindsame)
                 getsock_ip (fd, sock_ipaddr);
-
-        log_message (LOG_CONN, config.bindsame ?
-                     "Connect (file descriptor %d): %s [%s] at [%s]" :
-                     "Connect (file descriptor %d): %s [%s]",
-                     fd, peer_string, peer_ipaddr, sock_ipaddr);
 
         connptr = initialize_conn (fd, peer_ipaddr, peer_string,
                                    config.bindsame ? sock_ipaddr : NULL);
